@@ -22,9 +22,10 @@ export function App() {
 
   // Connect to WebSocket stream for live alerts
   useEffect(() => {
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = window.location.port === '3000' ? `${window.location.hostname}:8000` : window.location.host;
-    const wsUrl = `${protocol}//${host}/api/v1/stream/ws`;
+    const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+    const wsUrl = isProduction 
+      ? 'wss://behavioral-anamoly-detection-honeywell.onrender.com/api/v1/stream/ws'
+      : `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.hostname}:8000/api/v1/stream/ws`;
     
     let socket: WebSocket | null = null;
 

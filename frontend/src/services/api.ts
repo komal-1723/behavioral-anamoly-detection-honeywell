@@ -8,7 +8,11 @@ import {
   ConceptDriftData 
 } from '../types';
 
-const API_BASE_URL = '/api/v1';
+// Automatically detect production cloud URL vs local proxy
+const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+const API_BASE_URL = isProduction 
+  ? 'https://behavioral-anamoly-detection-honeywell.onrender.com/api/v1' 
+  : '/api/v1';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
