@@ -1,8 +1,9 @@
 services:
-  # Backend FastAPI Service
+  # Backend FastAPI Service (100% Free Tier)
   - type: web
     name: aegis-ueba-backend
     env: python
+    plan: free
     buildCommand: pip install -r backend/requirements.txt
     startCommand: python -m backend.main
     envVars:
@@ -11,10 +12,11 @@ services:
       - key: DATABASE_URL
         value: sqlite:///./cyber_ueba.db
 
-  # Frontend Static Site
+  # Frontend Static Site (100% Free Tier)
   - type: web
     name: aegis-ueba-frontend
     env: static
+    plan: free
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/dist
     routes:
