@@ -3,7 +3,6 @@ services:
   - type: web
     name: aegis-ueba-backend
     env: python
-    region: singapore
     buildCommand: pip install -r backend/requirements.txt
     startCommand: python -m backend.main
     envVars:
@@ -12,10 +11,10 @@ services:
       - key: DATABASE_URL
         value: sqlite:///./cyber_ueba.db
 
-  # Frontend React Static Site
-  - type: static
+  # Frontend Static Site
+  - type: web
     name: aegis-ueba-frontend
-    region: singapore
+    env: static
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/dist
     routes:
